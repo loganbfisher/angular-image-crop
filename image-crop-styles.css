@@ -2,6 +2,8 @@
  * however some styles are required for the structure, and are critical to this module behaving properly!
  */
 
+ .image-crop-input { padding: 25%; }
+
 /* Core component styles */
 .ng-image-crop {
   text-align: center;
