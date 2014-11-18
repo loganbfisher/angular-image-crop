@@ -943,8 +943,8 @@
           function updateDragBounds() {
             // $img.width, $canvas.width, zoom
 
-            minXPos = $canvas.width - ($img.width * zoom) - 50;
-            minYPos = $canvas.height - ($img.height * zoom) - 50;
+            minXPos = $canvas.width - ($img.width * 2);
+            minYPos = $canvas.height - ($img.height * 2);
 
           }
 
