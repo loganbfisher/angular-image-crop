@@ -799,7 +799,7 @@
           var zoom = 1;
           var maxZoomGestureLength = 0;
           var maxZoomedInLevel = 0, maxZoomedOutLevel = 2;
-          var minXPos = 0, maxXPos = 50, minYPos = 0, maxYPos = 50; // for dragging bounds
+          var minXPos = 0, maxXPos = 250, minYPos = 0, maxYPos = 250; // for dragging bounds
 
           var zoomWeight = .4;
           var ctx = $canvas.getContext('2d');
@@ -957,11 +957,11 @@
 
             var proposedZoomLevel = to2Dp(zoom + val);
 
-            if ((proposedZoomLevel < maxZoomedInLevel) || (proposedZoomLevel > maxZoomedOutLevel)) {
-              // image wont fill whole canvas
-              // or image is too far zoomed in, it's gonna get pretty pixelated!
-              return;
-            }
+            // if ((proposedZoomLevel < maxZoomedInLevel) || (proposedZoomLevel > maxZoomedOutLevel)) {
+            //   // image wont fill whole canvas
+            //   // or image is too far zoomed in, it's gonna get pretty pixelated!
+            //   return;
+            // }
 
             zoom = proposedZoomLevel;
             // console.log('zoom', zoom);
