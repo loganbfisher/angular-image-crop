@@ -762,7 +762,7 @@
     .directive('imageCrop', function() {
 
       return {
-        template: '<div id="image-crop-{{ rand }}" class="ng-image-crop ng-image-crop--{{ shape }}" ng-style="moduleStyles"><section ng-style="sectionStyles" ng-show="step==1"><input type="file" class="image-crop-input" /></section><section ng-style="sectionStyles" ng-show="step==2"><canvas class="cropping-canvas" width="{{ canvasWidth }}" height="{{ canvasHeight }}" ng-mousemove="onCanvasMouseMove($event)" ng-mousedown="onCanvasMouseDown($event)" ng-mouseup="onCanvasMouseUp($event)"></canvas><div ng-style="croppingGuideStyles" class="cropping-guide"></div><div class="zoom-handle" ng-mousemove="onHandleMouseMove($event)" ng-mousedown="onHandleMouseDown($event)" ng-mouseup="onHandleMouseUp($event)"><span>&larr; zoom &rarr;</span></div><button type="button" ng-click="crop()">Crop</button></section><section ng-style="sectionStyles" class="image-crop-section-final" ng-show="step==3"><img class="image-crop-final" ng-src="{{ croppedDataUri }}" /></section></div>',
+        template: '<div id="image-crop-{{ rand }}" class="ng-image-crop ng-image-crop--{{ shape }}" ng-style="moduleStyles"><section ng-style="sectionStyles" ng-show="steps==1"><input type="file" class="image-crop-input" /></section><section ng-style="sectionStyles" ng-show="steps==2"><canvas class="cropping-canvas" width="{{ canvasWidth }}" height="{{ canvasHeight }}" ng-mousemove="onCanvasMouseMove($event)" ng-mousedown="onCanvasMouseDown($event)" ng-mouseup="onCanvasMouseUp($event)"></canvas><div ng-style="croppingGuideStyles" class="cropping-guide"></div><div class="zoom-handle" ng-mousemove="onHandleMouseMove($event)" ng-mousedown="onHandleMouseDown($event)" ng-mouseup="onHandleMouseUp($event)"><span>&larr; zoom &rarr;</span></div><button type="button" ng-click="crop()">Crop</button></section><section ng-style="sectionStyles" class="image-crop-section-final" ng-show="steps==3"><img class="image-crop-final" ng-src="{{ croppedDataUri }}" /></section></div>',
         replace: true,
         restrict: 'AE',
         scope: {
@@ -770,12 +770,12 @@
           height: '@',
           shape: '@',
           result: '=',
-          step: '='
+          steps: '='
         },
         link: function (scope, element, attributes) {
 
           scope.rand = Math.round(Math.random() * 99999);
-          scope.step = scope.step || 1;
+          scope.steps = scope.step || 1;
           scope.shape = scope.shape || 'circle';
           scope.width = parseInt(scope.width, 10) || 300;
           scope.height = parseInt(scope.height, 10) || 300;
@@ -827,7 +827,7 @@
           // ---------- EVENT HANDLERS ---------- //
           fileReader.onload = function(e) {
             $img.src = this.result;
-            scope.step = 2;
+            scope.steps = 2;
             scope.$apply();
 
             var byteString = atob(this.result.split(',')[1]);
@@ -1029,7 +1029,7 @@
 
           scope.crop = function() {
             scope.croppedDataUri = $canvas.toDataURL();
-            scope.step = 3;
+            scope.steps = 3;
           };
 
           scope.onCanvasMouseUp = function(e) {
